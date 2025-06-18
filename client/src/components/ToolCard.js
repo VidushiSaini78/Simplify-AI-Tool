@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./ToolCard.css"; // Add a new CSS file for clean structure
+import confetti from "canvas-confetti";
 
 function ToolCard({ tool, isFav = false, refresh }) {
   const [fav, setFav] = useState(isFav);
@@ -14,7 +14,15 @@ function ToolCard({ tool, isFav = false, refresh }) {
       await axios.delete(`http://localhost:5000/favorites/${tool.id}`);
     } else {
       await axios.post(`http://localhost:5000/favorites/${tool.id}`);
+
+      // 🎉 Trigger confetti on favorite add
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
     }
+
     setFav(!fav);
     if (refresh) refresh();
   };

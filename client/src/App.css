@@ -1,112 +1,147 @@
-.App {
-  text-align: center;
+/* === Light Theme (Default) === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #121212;
+  --card-bg: #f8f9fa; /* Light card background */
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+  --heart-color: #666;
+  --heart-active-color: red;
+  --button-border: #121212;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* === Dark Theme === */
+[data-theme="dark"] {
+  --bg-color: #111012;
+  --text-color: #f0f0f0;
+  --card-bg: #1e1e1e;
+  --card-shadow: rgba(255, 255, 255, 0.05);
+  --link-color: #4da6ff;
+  --link-hover-color: #82cfff;
+  --heart-color: #ccc;
+  --heart-active-color: red;
+  --button-border: #f0f0f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* App.css */
+/* === Global Reset === */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f7fa;
   margin: 0;
-  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.container {
+/* === App Container === */
+.app-container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-h1, h2 {
-  color: #333;
-}
-
-nav {
+/* === Header === */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
-nav a {
-  margin-right: 20px;
+.header h1 {
+  font-size: 28px;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* === Navigation Links === */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-links a {
+  font-size: 16px;
   text-decoration: none;
-  color: #0066cc;
+  color: var(--link-color);
   font-weight: 500;
 }
 
-nav a:hover {
-  text-decoration: underline;
+.nav-links a:hover {
+  color: var(--link-hover-color);
 }
 
-select {
-  padding: 8px;
-  font-size: 16px;
-  margin-bottom: 20px;
+/* === Theme Toggle Button === */
+.theme-toggle {
+  padding: 6px 14px;
+  font-size: 14px;
+  background-color: transparent;
+  border: 1px solid var(--button-border);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-color);
 }
 
-.card {
-  background: white;
+.theme-toggle:hover {
+  background-color: var(--link-color);
+  color: #ffffff;
+}
+
+/* === Card Styling === */
+.card, .tool-card {
+  position: relative;
+  background-color: var(--card-bg);
+  color: var(--text-color);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px var(--card-shadow);
   padding: 16px;
   margin: 10px;
   width: 280px;
+  height: auto;
   transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
-.card:hover {
+.card:hover, .tool-card:hover {
   transform: translateY(-4px);
 }
 
-.card h3 {
+.card h3, .tool-card h3 {
   margin-top: 0;
-  color: #222;
+  font-size: 18px;
+  color: var(--text-color);
 }
 
-.card a {
-  color: #0066cc;
+.card p, .tool-card p {
+  color: var(--text-color);
+}
+
+.card a, .tool-card a {
+  color: var(--link-color);
   text-decoration: none;
+  font-weight: bold;
 }
 
-.heart-button {
-  font-size: 20px;
-  color: grey;
+.card a:hover, .tool-card a:hover {
+  color: var(--link-hover-color);
+}
+
+/* === Heart Button/Icon === */
+.heart-button, .heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background: none;
   border: none;
+  font-size: 20px;
   cursor: pointer;
+  color: var(--heart-color);
 }
 
-.heart-button.active {
-  color: red;
+.heart-button.active, .heart-icon.active {
+  color: var(--heart-active-color);
 }
