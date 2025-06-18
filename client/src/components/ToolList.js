@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ToolCard from "./ToolCard";
 
+// You can replace this with your own spinner component if you have one
+function Spinner() {
+  return <div style={{ padding: 20, fontSize: 20 }}>Loading...</div>;
+}
+
 const categories = [
   "All",
   "Writing",
@@ -20,18 +25,38 @@ function ToolList() {
   const [favorites, setFavorites] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const toolsRes = await axios.get("http://localhost:5000/tools");
-      const favsRes = await axios.get("http://localhost:5000/favorites");
-      setTools(toolsRes.data);
-      setFavorites(favsRes.data);
+      setLoading(true);
+      try {
+        const toolsRes = await axios.get("http://localhost:5000/tools");
+        const favsRes = await axios.get("http://localhost:5000/favorites");
+        setTools(toolsRes.data);
+        setFavorites(favsRes.data);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
+      setLoading(false);
     };
     fetchData();
   }, []);
 
   const isFavorite = (id) => favorites.some((f) => f.id === id);
+
+  // Optional: simulate loading when changing filters/search (can be removed if instant filtering preferred)
+  const handleCategoryChange = (e) => {
+    setLoading(true);
+    setSelectedCategory(e.target.value);
+    setTimeout(() => setLoading(false), 300); // short delay to show spinner
+  };
+
+  const handleSearchChange = (e) => {
+    setLoading(true);
+    setSearchTerm(e.target.value);
+    setTimeout(() => setLoading(false), 300); // short delay to show spinner
+  };
 
   // Filter tools by category and search term
   const filteredTools = tools.filter((tool) => {
@@ -49,7 +74,7 @@ function ToolList() {
       {/* Category Selector */}
       <select
         value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
+        onChange={handleCategoryChange}
         style={{ padding: "8px", marginBottom: "10px", marginRight: "10px" }}
       >
         {categories.map((cat) => (
@@ -64,12 +89,14 @@ function ToolList() {
         type="text"
         placeholder="Search by tool name"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearchChange}
         style={{ padding: "8px", marginBottom: "20px", width: "250px" }}
       />
 
-      {/* Show message if no tools match */}
-      {filteredTools.length === 0 ? (
+      {/* Show spinner while loading */}
+      {loading ? (
+        <Spinner />
+      ) : filteredTools.length === 0 ? (
         <p>No tools found for the selected filters.</p>
       ) : (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
