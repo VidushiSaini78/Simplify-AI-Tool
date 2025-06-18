@@ -70,7 +70,7 @@ Ensure you have the following installed on your machine:
     #### 1. Install Dependencies
     ```bash
     npm start
-4. **Start the Server**
+5. **Start the Server**
     ```bash
     npm start
 
