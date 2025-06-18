@@ -6,8 +6,10 @@
 [![Node.js](https://img.shields.io/badge/Runtime-Node.js-green.svg)](https://nodejs.org/)
 
 ### 💻 App Interface Preview  
-> ☀️ Light Theme  
+> ☀️ Light Theme 
+![Light Theme](image1.png)
 > 🌙 Dark Theme  
+![Dark Theme](image2.png)
 
 ## 🚀 Features
 
@@ -84,4 +86,4 @@ Ensure you have the following installed on your machine:
 
 This project is for educational and demonstration purposes.
 --
- Made with ❤️ to simplify your AI tool discovery.
+ ###Made with ❤️ to simplify your AI tool discovery.
