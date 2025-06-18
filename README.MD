@@ -74,7 +74,7 @@ Ensure you have the following installed on your machine:
     ```bash
     npm start
 
-## 📡 API Endpoints
+### 📡 API Endpoints
 
 | Method | Endpoint         | Description               |
 |--------|------------------|---------------------------|
@@ -85,6 +85,6 @@ Ensure you have the following installed on your machine:
 
 ## 📄 License
 
-This project is for educational and demonstration purposes.
+###This project is for educational and demonstration purposes.
 --
  ###Made with ❤️ to simplify your AI tool discovery.
