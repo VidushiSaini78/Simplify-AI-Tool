@@ -87,4 +87,4 @@ Ensure you have the following installed on your machine:
 
 ### This project is for educational and demonstration purposes.
 --
- ###Made with ❤️ to simplify your AI tool discovery.
+ ### Made with ❤️ to simplify your AI tool discovery.
