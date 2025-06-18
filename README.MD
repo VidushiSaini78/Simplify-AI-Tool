@@ -8,6 +8,7 @@
 ### 💻 App Interface Preview  
 > ☀️ Light Theme 
 ![Light Theme](image1.png)
+
 > 🌙 Dark Theme  
 ![Dark Theme](image2.png)
 
